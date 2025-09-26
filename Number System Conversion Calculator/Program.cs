@@ -8,44 +8,68 @@ namespace Number_System_Conversion_Calculator
         {
             while (true)
             {
-                Console.WriteLine("Choose data type: 1-bin");
+                Console.WriteLine("Choose input type: 1-bin , 2-octal, 3-dec, 4-hex:");
                 int Choice = int.Parse(Console.ReadLine());
-                if (Choice == 1)
+                if(Choice < 1 || Choice > 4)
                 {
-                    Console.WriteLine("Choose data type to convert to:1-bin , 2-octal, 3-dec, 4-hex:");
-                    int convertTo = int.Parse(Console.ReadLine());
+                    Console.WriteLine("Ivalid input!");
+                }
+                
+                
 
+                Console.WriteLine("Choose convertion: 1-bin , 2-octal, 3-dec, 4-hex:");
+                int Convert = int.Parse(Console.ReadLine());
+                if (Convert < 1 || Convert > 4)
+                {
+                    Console.WriteLine("Ivalid input!");
+                }
+
+                switch (Choice)
+                {
+                    case 1:
                     try
                     {
-                        if (convertTo == 1)
+                            BinaryConvert bin = new BinaryConvert();
+                            switch (Convert)
                         {
-                            throw new Exception("Cannot convert binary to binary");
+                                
+                            case 1: throw new Exception("Cannot convert binary to binary");
+                            case 2: Console.WriteLine($"Result:{bin.ToOct()}"); break;
+                            case 3: Console.WriteLine($"Result:{bin.ToDec()}"); break;
+                            case 4: Console.WriteLine($"Result:{bin.ToHex()}"); break;
+                            default: Console.WriteLine($"Ivalid choice."); break;
                         }
                     }
-                    catch (Exception ex)
+                    catch(Exception ex)
                     {
-                        Console.WriteLine($"There was an error: {ex.Message}");
+                        Console.WriteLine($"There was an error:{ex.Message}");
                     }
-                    if (convertTo == 2)
-                    {
-                        Console.WriteLine("Enter number:");
-                        BinToOct bintooct = new BinToOct();
-                        Console.WriteLine($"Result:{bintooct.ToString()}");
-                    }
-                    if (convertTo == 3)
-                    {
-                        Console.WriteLine("Enter number:");
-                        BinToDec bintodec = new BinToDec();
-                        Console.WriteLine($"Result:{bintodec.ToString()}");
-                    }
-                    if (convertTo == 4)
-                    {
-                        Console.WriteLine("Enter number:");
-                        BinToHex bintohex = new BinToHex();
-                        Console.WriteLine($"Result:{bintohex.ToString()}");
+                        break;
 
-                    }
+                    case 2:
+                        try
+                        {
+                            OctalConvert oct = new OctalConvert();
+                            switch (Convert)
+                            {
+                                case 1: Console.WriteLine($"Result:{oct.ToBin()}"); break;
+                                case 2: throw new Exception("Cannot convert octal to octal");
+                                case 3: Console.WriteLine($"Result:{oct.ToDec()}"); break;
+                                case 4: Console.WriteLine($"Result:{oct.ToHex()}"); break;
+                                default: Console.WriteLine($"Invalid choice"); break;
+                            }
+                        }
+                        catch(Exception ex)
+                        {
+                            Console.WriteLine($"There was an error:{ex.Message}");
+                        }
+                        break;
                 }
+                
+                
+
+
+
             }
         }
     }
