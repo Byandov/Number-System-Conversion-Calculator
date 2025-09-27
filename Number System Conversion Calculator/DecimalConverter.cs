@@ -4,20 +4,21 @@ using System.Text;
 
 namespace Number_System_Conversion_Calculator
 {
-    internal class OctalConvert
+    internal class DecimalConverter
     {
-        string octal;
+        int dec;
 
-        public OctalConvert()
+        public DecimalConverter()
         {
             while (true)
             {
                 Console.WriteLine("Enter number:");
-                this.octal = Console.ReadLine();
+                string input = Console.ReadLine();
+
                 bool isValid = true;
-                foreach (char c in octal)
+                foreach (char c in input)
                 {
-                    if (c < '0' || c > '7')
+                    if (c < '0' || c > '9')
                     {
                         isValid = false;
                         break;
@@ -26,46 +27,44 @@ namespace Number_System_Conversion_Calculator
 
                 if (isValid)
                 {
+                    this.dec = int.Parse(input);
                     break;
                 }
                 else
                 {
-                    Console.WriteLine("Invalid input! Only 1 to 7 are allowed.");
+                    Console.WriteLine("Invalid input! Only digits 0–9 are allowed.");
                 }
             }
-
         }
-        public int ToDec()
-        {
-            int ToDec = 0;
-            int placeholder = 0;
-            for(int i = octal.Length - 1; i >= 0 ; i--)
-            {
-                char bit = octal[i];
-                int digit = bit - '0';
-
-                ToDec += digit * (int)Math.Pow(8, placeholder);
-
-                placeholder++;
-
-            }
-            return ToDec;
-        }
+            
 
         public string ToBin()
         {
-            int dec = ToDec();
             string ToBin = "";
-            for (; dec > 0; dec /= 2)
+            int number = dec;
+            
+            for(;number > 0; number /= 2)
             {
-                ToBin = (dec % 2) + ToBin;
+                ToBin = (number % 2) + ToBin;
+                
             }
             return ToBin;
+        }
+
+        public string ToOct()
+        {
+            string ToOct = "";
+            int number = dec;
+            for (; number > 0; number /= 8)
+            {
+                ToOct = (number % 8) + ToOct;
+            }
+            return ToOct;
         }
         public string ToHex()
         {
             string ToHex = "";
-            int number = ToDec();
+            int number = dec;
             while (number > 0)
             {
                 int digit = number % 16;

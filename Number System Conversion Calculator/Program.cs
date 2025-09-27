@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Net.Http.Headers;
 
 namespace Number_System_Conversion_Calculator
 {
@@ -56,6 +57,24 @@ namespace Number_System_Conversion_Calculator
                                 case 2: throw new Exception("Cannot convert octal to octal");
                                 case 3: Console.WriteLine($"Result:{oct.ToDec()}"); break;
                                 case 4: Console.WriteLine($"Result:{oct.ToHex()}"); break;
+                                default: Console.WriteLine($"Invalid choice"); break;
+                            }
+                        }
+                        catch(Exception ex)
+                        {
+                            Console.WriteLine($"There was an error:{ex.Message}");
+                        }
+                        break;
+                    case 3:
+                        try
+                        {
+                            DecimalConverter dec = new DecimalConverter();
+                            switch (Convert)
+                            {
+                                case 1: Console.WriteLine($"Result:{dec.ToBin()}"); break;
+                                case 2: Console.WriteLine($"Result:{dec.ToOct()}"); break;
+                                case 3: throw new Exception("Cannot convert decimal to decimal");
+                                case 4: Console.WriteLine($"Result:{dec.ToHex()}"); break;
                                 default: Console.WriteLine($"Invalid choice"); break;
                             }
                         }
