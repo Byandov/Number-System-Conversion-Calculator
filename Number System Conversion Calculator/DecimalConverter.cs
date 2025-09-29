@@ -41,11 +41,10 @@ namespace Number_System_Conversion_Calculator
         public string ToBin()
         {
             string ToBin = "";
-            int number = dec;
             
-            for(;number > 0; number /= 2)
+            for(;dec > 0; dec /= 2)
             {
-                ToBin = (number % 2) + ToBin;
+                ToBin = (dec % 2) + ToBin;
                 
             }
             return ToBin;
@@ -54,20 +53,20 @@ namespace Number_System_Conversion_Calculator
         public string ToOct()
         {
             string ToOct = "";
-            int number = dec;
-            for (; number > 0; number /= 8)
+            
+            for (; dec > 0; dec /= 8)
             {
-                ToOct = (number % 8) + ToOct;
+                ToOct = (dec % 8) + ToOct;
             }
             return ToOct;
         }
         public string ToHex()
         {
             string ToHex = "";
-            int number = dec;
-            while (number > 0)
+          
+            while (dec > 0)
             {
-                int digit = number % 16;
+                int digit = dec % 16;
                 switch (digit)
                 {
                     case 10: ToHex = "A" + ToHex; break;
@@ -78,7 +77,7 @@ namespace Number_System_Conversion_Calculator
                     case 15: ToHex = "F" + ToHex; break;
                     default: ToHex = digit.ToString() + ToHex; break;
                 }
-                number /= 16;
+                dec /= 16;
             }
             return ToHex;
         }
